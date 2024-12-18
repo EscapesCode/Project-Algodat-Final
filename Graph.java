@@ -4,7 +4,6 @@ public class Graph {
     public Graph() {
         this.head = null;
     }
-
     public void sortByHarga() {
         if (head == null)
             return;
@@ -28,14 +27,12 @@ public class Graph {
     public void sortByRating() {
         if (head == null)
             return;
-
         boolean swapped;
         do {
             swapped = false;
-            Wisata current = head; // Reset current ke head di setiap iterasi
+            Wisata current = head; 
             while (current != null && current.next != null) {
                 if (current.rating < current.next.rating) {
-                    // Tukar data wisata
                     swapWisataData(current, current.next);
                     swapped = true;
                 }
@@ -43,7 +40,7 @@ public class Graph {
             }
         } while (swapped);
         System.out.println("Wisata berhasil diurutkan berdasarkan rating.");
-        printWisataList(); // Menampilkan daftar wisata setelah diurutkan
+        printWisataList(); 
     }
 
     private void printWisataList() {
@@ -62,7 +59,7 @@ public class Graph {
         System.out.println("-------------------------------------------------------");
     }
 
-    // Method untuk menukar data antara dua wisata
+    // Method buat nukar data dua wisata
     private void swapWisataData(Wisata w1, Wisata w2) {
         String tempNama = w1.nama;
         int tempHarga = w1.harga;
@@ -82,10 +79,9 @@ public class Graph {
 
     void addWisata(String nama, int harga, double rating) {
         Wisata simpulBaru = new Wisata(nama, harga, rating);
-        simpulBaru.next = head; // simpulBaru menunjuk ke node yang ada saat ini (head)
-        head = simpulBaru; // Head sekarang menunjuk ke simpul baru
+        simpulBaru.next = head;
+        head = simpulBaru; 
     }
-
     void deleteWisata() {
         if (head == null) {
             System.out.println("Daftar wisata kosong.");
@@ -169,7 +165,7 @@ public class Graph {
                 Tetangga temp = simpulHost.tetangga;
                 while (temp != null && temp.next != null) {
                     if (temp.next.simpul == simpulTujuan) {
-                        temp.next = temp.next.next; // Hapus tetangga sesuai
+                        temp.next = temp.next.next; 
                         System.out.println("Edge antara " + host + " dan " + tujuan + " berhasil dihapus.");
                         return; // abis delete balik menu utama
                     }
@@ -202,7 +198,7 @@ public class Graph {
     private void resetVisitedStatus() {
         Wisata temp = head;
         while (temp != null) {
-            temp.dikunjungi = false; // Resetkan status dikunjungi
+            temp.dikunjungi = false; 
             temp = temp.next;
         }
     }
@@ -224,7 +220,6 @@ public class Graph {
                 temp = temp.next;
             }
         }
-
         currentPath.setLength(currentPath.length() - (current.nama.length() + 4));
     }
 
@@ -238,14 +233,11 @@ public class Graph {
         }
         ResetWisata();
         start.jarak = 0;
-
         while (true) {
             Wisata current = findSimpulJarakkecil();
-
             if (current == null) {
                 break;
             }
-
             current.dikunjungi = true;
             Tetangga tetangga = current.tetangga;
             while (tetangga != null) {
@@ -259,7 +251,6 @@ public class Graph {
                 tetangga = tetangga.next;
             }
         }
-
         if (end.jarak == Integer.MAX_VALUE) {
             System.out.println("Tidak ada jalur dari " + startLocation + " ke " + endLocation);
         } else {
@@ -287,9 +278,9 @@ public class Graph {
     void ResetWisata() {
         Wisata temp = head;
         while (temp != null) {
-            temp.jarak = Integer.MAX_VALUE; // Reset jarak
-            temp.dikunjungi = false; // Reset status kunjungan
-            temp.jalur = null; // Reset jalur
+            temp.jarak = Integer.MAX_VALUE; 
+            temp.dikunjungi = false; 
+            temp.jalur = null; 
             temp = temp.next;
         }
     }

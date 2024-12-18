@@ -21,7 +21,6 @@ class Main {
                     wisata.sortByHarga();
                     scanner.nextLine();
                     clearConsole();
-                    // Menyortir berdasarkan harga
                     break;
                 case 2:
                     wisata.sortByRating();
@@ -29,7 +28,7 @@ class Main {
                     clearConsole();
                     break;
                 case 3:
-                    userMenu(); // Kembali ke menu utama
+                    userMenu(); 
                 default:
                     System.out.println("Pilihan tidak valid.");
             }
@@ -37,7 +36,6 @@ class Main {
     }
 
     public static void main(String[] args) {
-
         wisata.addWisata("Gunung Rinjani", 25000, 4.5);
         wisata.addWisata("Loang Baloq", 45000, 4.2);
         wisata.addWisata("Mataram Mall", 30000, 4.3);
@@ -107,7 +105,6 @@ class Main {
         userList.addUser("user", "user", "user");
         clearConsole();
         login(userList);
-
     }
 
     private static void login(UserLinkedList userList) {
@@ -115,9 +112,7 @@ class Main {
         String username = scanner.nextLine();
         System.out.print("Password: ");
         String password = scanner.nextLine();
-
         User user = userList.findUser(username);
-
         if (user != null && user.password.equals(password)) {
             if (user.role.equals("admin")) {
                 adminMenu();
@@ -131,7 +126,6 @@ class Main {
             login(userList); 
         }
     }
-
     private static void adminMenu() {
         clearConsole();
         while (true) {
@@ -141,23 +135,19 @@ class Main {
             System.out.print("Pilih menu: ");
             int choice = scanner.nextInt();
             scanner.nextLine();
-
             switch (choice) {
                 case 1:
                     kelolaUser();
                     break;
-
                 case 2:
                     kelolaWisata();
                     break;
-
                 case 3:
                     System.out.println("Logout berhasil.");
                     scanner.nextLine();
                     clearConsole();
                     login(userList);
                     return;
-
                 default:
                     System.out.println("Pilihan tidak valid.");
             }
@@ -220,7 +210,7 @@ class Main {
                 case 5:
                     System.out.print("Masukkan nomor user yang ingin dihapus: ");
                     int nomorUser = scanner.nextInt();
-                    scanner.nextLine(); // Clear buffer
+                    scanner.nextLine(); 
                     boolean isDeleted = userList.deleteUserByIndex(nomorUser - 1);
                     if (!isDeleted) {
                         System.out.println("Gagal menghapus user.");
