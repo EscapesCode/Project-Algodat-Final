@@ -203,25 +203,32 @@ public class Graph {
         }
     }
 
+    // Perbaikan DFS : 12 20 2024
     private void DFS(Wisata current, Wisata end, LinkedListSchedule jalur, StringBuilder currentPath) {
-
+        // Tandai wisata saat ini sebagai dikunjungi
+        current.dikunjungi = true;
         currentPath.append(current.nama).append(" -> ");
-
+    
         if (current == end) {
-            System.out.println(currentPath.substring(0, currentPath.length() - 4));
+            // Jika kita sampai ke tujuan, cetak jalurnya
+            System.out.println(currentPath.substring(0, currentPath.length() - 4)); // Menghapus " -> "
         } else {
             Tetangga temp = current.tetangga;
             while (temp != null) {
+                // Cek apakah tetangga sudah dikunjungi
                 if (!temp.simpul.dikunjungi) {
-                    temp.simpul.dikunjungi = true;
                     DFS(temp.simpul, end, jalur, currentPath);
-                    temp.simpul.dikunjungi = false;
                 }
                 temp = temp.next;
             }
         }
-        currentPath.setLength(currentPath.length() - (current.nama.length() + 4));
+        
+        // Setelah menelusuri jalur ini, set kembali dikunjungi menjadi false untuk jalur lain
+        current.dikunjungi = false;
+        currentPath.setLength(currentPath.length() - (current.nama.length() + 4));  // Menghapus " -> "
     }
+    
+
 
     void DJSiktra(String startLocation, String endLocation) {
         Wisata start = find(startLocation);
